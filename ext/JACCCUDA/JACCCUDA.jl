@@ -98,7 +98,7 @@ end
 function _parallel_for_cuda(N, f, x...)
     i = (blockIdx().x - 1) * blockDim().x + threadIdx().x
     i > N && return nothing
-    f(i, x...)
+        f(i, x...)
     return nothing
 end
 
