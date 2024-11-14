@@ -95,10 +95,20 @@ function JACC.parallel_reduce(
     return Core.Array(rret)[]
 end
 
+# function _parallel_for_cuda(N, f, x...)
+#     i = (blockIdx().x - 1) * blockDim().x + threadIdx().x
+#     i > N && return nothing
+#         f(i, x...)
+#     return nothing
+# end
+
 function _parallel_for_cuda(N, f, x...)
     i = (blockIdx().x - 1) * blockDim().x + threadIdx().x
-    i > N && return nothing
-        f(i, x...)
+    if i > N
+        println("Index i ($i) is greater than N ($N)")
+        return nothing
+    end
+    f(i, x...)
     return nothing
 end
 
