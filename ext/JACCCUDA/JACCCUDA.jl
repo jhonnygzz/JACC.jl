@@ -22,9 +22,9 @@ function JACC.parallel_for(::CUDABackend, N::I, f::F, x...) where {I <: Integer,
     #maxPossibleThreads = CUDA.maxthreads(parallel_kernel)
     maxPossibleThreads = 512
     # threads = min(N, maxPossibleThreads)
-    threads = 256
+    threads = 128
     # blocks = ceil(Int, N / threads)
-    blocks = 512
+    blocks = 256
     # println("Threads: ", threads)
     # println("Blocks: ", blocks)
     
